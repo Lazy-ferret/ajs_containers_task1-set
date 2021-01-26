@@ -4,9 +4,11 @@ export default class Team {
   }
 
   add(item) {
-    if (this.members.has(item)) {
-      throw new Error('Tакой объект уже существует в команде');
-    }
+    this.members.forEach((elem) => {
+      if (JSON.stringify(elem) === JSON.stringify(item)) {
+        throw new Error('Tакой объект уже существует в команде');
+      }
+    });
     this.members.add(item);
   }
 

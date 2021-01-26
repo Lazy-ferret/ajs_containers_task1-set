@@ -20,15 +20,46 @@ test('should add new unit', () => {
 
 test('should throw error cause unit already exists', () => {
   const team = new Team();
-  const bowman = new Bowman('Oleg', 'Bowman');
-
-  const received = () => {
-    team.add(bowman);
-    team.add(bowman);
-  };
-  const expected = 'Tакой объект уже существует в команде';
-  expect(received).toThrowError(expected);
+  team.add({
+    name: 'Лучник',
+    type: 'Bowman',
+    health: 50,
+    level: 3,
+    attack: 40,
+    defence: 10,
+  });
+  expect(() => {
+    team.add({
+      name: 'Лучник',
+      type: 'Bowman',
+      health: 50,
+      level: 3,
+      attack: 40,
+      defence: 10,
+    });
+  }).toThrowError('Tакой объект уже существует в команде');
 });
+
+// test('test-name', () => {
+//   const team = new Team();
+//   team.add({
+//     name: 'Лучник',
+//     type: 'Bowman',
+//     health: 50,
+//     level: 3,
+//     attack: 40,
+//     defence: 10,
+//   });
+
+//   expect(team.add({
+//     name: 'Лучник',
+//     type: 'Bowman',
+//     health: 50,
+//     level: 3,
+//     attack: 40,
+//     defence: 10,
+//   })).toThrow();
+// });
 
 test('should add all units', () => {
   const team = new Team();
